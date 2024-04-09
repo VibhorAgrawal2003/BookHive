@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* General Styles */
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Search Container */
+.search-container {
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+/* Ebook Card */
+.ebook-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.ebook-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.ebook-card .download-btn {
+  margin-top: auto;
+  align-self: center;
+}
+
+/* Additional Color Palette */
+.bg-gradient-to-r {
+  background: linear-gradient(to right, #64b5f6, #2196f3);
+}
+
+/* Navbar Hover Effect */
+.navbar-link:hover {
+  text-decoration: none; /* Reset any default underline */
+}
+
+.navbar-link:hover a {
+  text-decoration: underline;
+}
