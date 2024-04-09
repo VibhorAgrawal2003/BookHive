@@ -1,14 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-// import dotenv from 'dotenv';
 
 import Navbar from '../components/Navbar';
+import Banner from '../components/Banner';
 import EbookCard from '../components/EbookCard';
 import Toaster from '../components/Toaster';
 
 function Home() {
 
   const [books, setBooks] = useState([]);
+  const [showToaster, setShowToaster] = useState(false);
+    
+  const handleDownload = () => {
+    setShowToaster(true);
+    setTimeout(() => {
+    setShowToaster(false);
+    }, 3000);
+  };
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -24,31 +32,29 @@ function Home() {
     fetchBooks();
   }, []);
 
-  console.log(books);
-
   return (
     <div>
       <Navbar />
       <section className="bg-gradient-to-r from-blue-400 to-blue-600 text-white py-20 px-4">
-        <div className="container mx-auto text-center">
-          <h1 className="text-4xl font-bold mb-4">Welcome to BookHub</h1>
-          <p className="text-lg">"Unlock the world of knowledge through our vast collection of digital ebooks."</p>
-        </div>
+        <Banner/>
       </section>
-      <div className="container mx-auto mt-8 grid grid-cols-3 gap-8">
+      <div className="w-5/6 mx-auto mt-8 grid grid-cols-3 gap-16">
         
-      {books.map((book) => (
-        <EbookCard
-          key={book._id}  // Assuming each book has a unique identifier
-          title={book.title}
-          author={book.author}
-          description={book.description}
-          imageUrl={book.imageUrl}  // Assuming imageUrl is a field in the book object
-        />
-      ))}
+        {books.map((book) => (
+          <EbookCard
+            key={book._id}
+            title={book.title}
+            author={book.author}
+            description={book.description}
+            category={book.category}
+            imageUrl={book.imageUrl}
+            downloadUrl={book.downloadUrl}
+            handleDownload={handleDownload}
+          />
+        ))}
 
       </div>
-      <Toaster message="File download has started." />
+      {showToaster && <Toaster message="File download started!" />}
     </div>
   );
 }

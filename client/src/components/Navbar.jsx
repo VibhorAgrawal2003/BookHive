@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     return (
@@ -8,9 +9,9 @@ const Navbar = () => {
                     <a href="#" className="text-2xl font-bold navbar-link">BookHub</a>
                 </div>
                 <div className="w-2/3 flex items-center justify-between">
-                    <div>
-                        <a href="#" className="mr-6 hover:underline navbar-link">Home</a>
-                        <a href="#" className="mr-6 hover:underline navbar-link">Submit Book</a>
+                    <div className='flex flex-row gap-x-4'>
+                        <div className="mr-6 hover:underline navbar-link"><Link to="/">Home</Link></div>
+                        <div className="mr-6 hover:underline navbar-link"><Link to="/form">Submit Book</Link></div>
                         <button id="categoriesBtn" className="mr-6 hover:underline navbar-link">Categories</button>
                         <ul className="absolute hidden bg-gray-800 text-white rounded mt-2 w-40" id="categoriesList">
                             <li><a href="#" className="block px-4 py-2 hover:bg-gray-700">Fiction</a></li>
@@ -19,7 +20,7 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <div className="w-1/2 flex items-center search-container">
-                        <input type="text" placeholder="Search books..." className="w-full rounded border border-gray-700 mr-2 p-2" />
+                        <input type="text" placeholder="Search books..." className="w-full rounded border border-gray-700 mr-2 p-2 text-black" />
                         <button className="bg-blue-500 text-white px-4 py-2 rounded">Search</button>
                     </div>
                 </div>

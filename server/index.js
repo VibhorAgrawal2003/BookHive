@@ -27,14 +27,37 @@ app.use(cors());
 // Routes
 app.use("/client", clientRoutes);
 
-// Fetch
-app.get('/books', async (_req, res) => {
+// CRUD
+app.get("/books", async (_req, res) => {
   try {
     const books = await Book.find();
     res.json(books);
   } catch (err) {
     res.status(500).json({ message: `Unable to fetch book details from the database.` });
   }
+});
+
+app.post("/books", async (req, res) => {
+  try {
+    const { title, author, category, description, imageUrl, downloadUrl } = req.body;
+
+    const newBook = new Book({
+      title,
+      author,
+      category,
+      description,
+      imageUrl,
+      downloadUrl
+    });
+
+    await newBook.save();
+    res.status(201).json({ message: "Book added successfully", book: newBook });
+
+  } catch (err) {
+    console.error("Error adding book:", err);
+    res.status(500).json({ message: "Unable to add book" });
+  }
+
 });
 
 // Database
