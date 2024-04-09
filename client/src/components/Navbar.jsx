@@ -2,26 +2,24 @@ import React from 'react';
 
 const Navbar = () => {
     return (
-        <nav className="bg-gray-900 text-white p-4">
-            <div className="container mx-auto flex justify-between items-center">
-                <div>
+        <nav className="bg-gray-900 text-white p-4 flex justify-between">
+            <div className="w-full container mx-auto flex justify-between items-center">
+                <div className="w-auto">
                     <a href="#" className="text-2xl font-bold navbar-link">BookHub</a>
                 </div>
-                <div className="flex items-center space-x-4">
+                <div className="w-2/3 flex items-center justify-between">
                     <div>
-                        <a href="#" className="mr-6 navbar-link">Home</a>
-                        <a href="#" className="mr-6 navbar-link">Submit Book</a>
-                    </div>
-                    <div className="relative">
-                        <button id="categoriesBtn" className="mr-6 focus:outline-none navbar-link">Categories</button>
+                        <a href="#" className="mr-6 hover:underline navbar-link">Home</a>
+                        <a href="#" className="mr-6 hover:underline navbar-link">Submit Book</a>
+                        <button id="categoriesBtn" className="mr-6 hover:underline navbar-link">Categories</button>
                         <ul className="absolute hidden bg-gray-800 text-white rounded mt-2 w-40" id="categoriesList">
                             <li><a href="#" className="block px-4 py-2 hover:bg-gray-700">Fiction</a></li>
                             <li><a href="#" className="block px-4 py-2 hover:bg-gray-700">Non-Fiction</a></li>
                             <li><a href="#" className="block px-4 py-2 hover:bg-gray-700">Mystery & Thriller</a></li>
                         </ul>
                     </div>
-                    <div className="flex items-center search-container">
-                        <input type="text" placeholder="Search books..." className="p-2 rounded border border-gray-700 mr-2" />
+                    <div className="w-1/2 flex items-center search-container">
+                        <input type="text" placeholder="Search books..." className="w-full rounded border border-gray-700 mr-2 p-2" />
                         <button className="bg-blue-500 text-white px-4 py-2 rounded">Search</button>
                     </div>
                 </div>
