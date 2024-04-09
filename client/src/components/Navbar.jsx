@@ -1,7 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
+
+    const [showCategories, setShowCategories] = useState(false);
+    
+    const enterCategories = () => {
+      setShowCategories(true);
+    };
+    
+    const exitCategories = () => {
+      setShowCategories(false);
+    };
+
     return (
         <nav className="bg-gray-900 text-white p-4 flex justify-between">
             <div className="w-full container mx-auto flex justify-between items-center">
@@ -12,12 +23,14 @@ const Navbar = () => {
                     <div className='flex flex-row gap-x-4'>
                         <div className="mr-6 hover:underline navbar-link"><Link to="/">Home</Link></div>
                         <div className="mr-6 hover:underline navbar-link"><Link to="/form">Submit Book</Link></div>
-                        <button id="categoriesBtn" className="mr-6 hover:underline navbar-link">Categories</button>
-                        <ul className="absolute hidden bg-gray-800 text-white rounded mt-2 w-40" id="categoriesList">
-                            <li><a href="#" className="block px-4 py-2 hover:bg-gray-700">Fiction</a></li>
-                            <li><a href="#" className="block px-4 py-2 hover:bg-gray-700">Non-Fiction</a></li>
-                            <li><a href="#" className="block px-4 py-2 hover:bg-gray-700">Mystery & Thriller</a></li>
-                        </ul>
+                        <div>
+                            <button id="categoriesBtn" onMouseEnter={enterCategories} className="mr-6 hover:underline navbar-link">Categories</button>
+                            {showCategories && <ul onMouseLeave={exitCategories}  className="absolute bg-gray-800 text-white rounded mt-2 w-40" id="categoriesList">
+                                <li><a href="#" className="block px-4 py-2 hover:bg-gray-700">Fiction</a></li>
+                                <li><a href="#" className="block px-4 py-2 hover:bg-gray-700">Non-Fiction</a></li>
+                                <li><a href="#" className="block px-4 py-2 hover:bg-gray-700">Mystery & Thriller</a></li>
+                            </ul>}
+                        </div>
                     </div>
                     <div className="w-1/2 flex items-center search-container">
                         <input type="text" placeholder="Search books..." className="w-full rounded border border-gray-700 mr-2 p-2 text-black" />

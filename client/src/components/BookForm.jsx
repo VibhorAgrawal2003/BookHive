@@ -19,8 +19,9 @@ function BookForm({ onSubmit }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`${process.env.REACT_APP_SERVER_URL}/books`, bookDetails);
-      // setToastMessage("Book successfully submitted!");
+      await axios.post(`${process.env.REACT_APP_SERVER_URL}/client/books`, bookDetails);
+      onSubmit();
+      handleReset();
     } catch (error) {
       console.error('Error submitting book details:', error);
     }

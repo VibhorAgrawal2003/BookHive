@@ -22,7 +22,7 @@ function Home() {
     const fetchBooks = async () => {
       try {
         console.log('Server URL:', process.env.REACT_APP_SERVER_URL);
-        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/books`);
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/client/books`);
         setBooks(response.data);
       } catch (error) {
         console.error('Error fetching books:', error);
@@ -38,7 +38,7 @@ function Home() {
       <section className="bg-gradient-to-r from-blue-400 to-blue-600 text-white py-20 px-4">
         <Banner/>
       </section>
-      <div className="w-5/6 mx-auto mt-8 grid grid-cols-3 gap-16">
+      <div className="w-5/6 mx-auto mt-8 grid grid-cols-3 gap-8">
         
         {books.map((book) => (
           <EbookCard

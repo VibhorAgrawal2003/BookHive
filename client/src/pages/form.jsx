@@ -1,18 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 
 import Navbar from '../components/Navbar';
 import BookForm from '../components/BookForm';
 import Toaster from '../components/Toaster';
 
 function Form() {
+
+  const [showToaster, setShowToaster] = useState(false);
+    
+  const handleUpload = () => {
+    setShowToaster(true);
+    setTimeout(() => {
+    setShowToaster(false);
+    }, 3000);
+  };
+
   return (
     <div>
       <Navbar />
       <div className='w-full flex items-center justify-content-center'>
-        <BookForm/>
+        <BookForm onSubmit={handleUpload} />
       </div>
-      <Toaster message="Book successfully submitted!" />
+      {showToaster && <Toaster message="Book successfully submitted!"/>}
     </div>
   );
 }
