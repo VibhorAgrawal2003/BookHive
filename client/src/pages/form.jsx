@@ -18,7 +18,7 @@ function Form() {
   return (
     <div>
       <Navbar />
-      <div className='w-full flex items-center justify-content-center'>
+      <div className='w-full pt-20 flex items-center justify-content-center'>
         <BookForm onSubmit={handleUpload} />
       </div>
       {showToaster && <Toaster message="Book successfully submitted!"/>}

@@ -9,8 +9,10 @@ import Toaster from '../components/Toaster';
 function Home() {
 
   const [books, setBooks] = useState([]);
+  const [category, setCategory] = useState("");
   const [showToaster, setShowToaster] = useState(false);
-    
+  
+  // Show the download toaster
   const handleDownload = () => {
     setShowToaster(true);
     setTimeout(() => {
@@ -18,6 +20,7 @@ function Home() {
     }, 3000);
   };
 
+  // Load all the books
   useEffect(() => {
     const fetchBooks = async () => {
       try {
@@ -32,9 +35,33 @@ function Home() {
     fetchBooks();
   }, []);
 
+
+
+  // Perform search by category
+  const updateCategory = (category) => {
+    setCategory(category);
+  };
+
+  useEffect(() => {
+    const searchCategory = async () => {    
+      try {
+        if (category !== "") {
+          console.log('Server URL:', process.env.REACT_APP_SERVER_URL);
+          const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/client/books/search?searchCategory=${category}`);
+          setBooks(response.data);
+        }
+      } catch (error) {
+        console.log('Axios Error:', error.message);
+      }
+    };
+  
+    searchCategory();
+  }, [category]);
+
+
   return (
     <div>
-      <Navbar />
+      <Navbar updateCategory = {updateCategory} />
       <section className="bg-gradient-to-r from-blue-400 to-blue-600 text-white py-20 px-4">
         <Banner/>
       </section>

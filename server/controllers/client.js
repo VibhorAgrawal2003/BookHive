@@ -26,7 +26,24 @@ export const putBooks = async (req, res) => {
     res.status(201).json({ message: "Book added successfully", book: newBook });
 
   } catch (err) {
-    console.error("Error adding book:", err);
     res.status(500).json({ message: "Unable to add book" });
+  }
+}
+
+export const searchByCategory = async (req, res) => {
+  try {
+    const { searchCategory } = req.query;
+    const allowedCategories = ["Fiction", "Non-Fiction", "Educational"];
+
+    if (!allowedCategories.includes(searchCategory)) {
+      res.status(400).json({ message: "Invalid category" });
+    }
+    else {
+      const books = await Book.find({ "category": searchCategory });
+      res.status(200).json(books);
+    }
+
+  } catch (err) {
+    res.status(500).json({ message: "Unable to search by category" });
   }
 }
