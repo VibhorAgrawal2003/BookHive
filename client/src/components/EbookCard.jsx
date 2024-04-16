@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import Toaster from './Toaster';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const EbookCard = ({ title, author, description, category, imageUrl, downloadUrl, downloadToaster }) => {
+const EbookCard = ({ id, title, author, description, category, imageUrl, downloadUrl, downloadToaster}) => {
 
+    const navigate = useNavigate();
     const truncatedDescription = description.length > 200 ? description.substring(0, 200) + '...' : description;
 
     const handleDownload = () => {
@@ -10,8 +11,12 @@ const EbookCard = ({ title, author, description, category, imageUrl, downloadUrl
         downloadToaster();
     }
 
+    const openDetailsPage = () => {
+        navigate(`/info/${id}`);
+    };
+
     return (
-        <div className="border p-4 rounded-lg shadow-md flex flex-col transform translate-all duration-300 hover:scale-105">
+        <div onClick={openDetailsPage} className="border p-4 rounded-lg shadow-md flex flex-col transform translate-all duration-300 hover:scale-105">
             <div className="flex-shrink-0">
                 <img src={imageUrl} alt={title} className="w-full h-32 object-cover rounded-t-lg" />
             </div>

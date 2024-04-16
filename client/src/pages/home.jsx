@@ -96,7 +96,7 @@ function Home() {
 
         {books.map((book) => (
           <EbookCard
-            key={book._id}
+            id={book._id}
             title={book.title}
             author={book.author}
             description={book.description}
