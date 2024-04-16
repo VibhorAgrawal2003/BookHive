@@ -36,8 +36,6 @@ function Home() {
     fetchBooks();
   }, []);
 
-
-
   // Perform search by category
   const updateCategory = (category) => {
     setCategory(category);

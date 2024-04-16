@@ -5,7 +5,7 @@ export const getBooks = async (_req, res) => {
     const books = await Book.find();
     res.status(200).json(books);
   } catch (err) {
-    res.status(500).json({ message: `Unable to fetch book details from the database.` });
+    res.status(500).json({ message: "Server error while fetching book: " + err.message });
   }
 }
 
@@ -33,14 +33,20 @@ export const putBooks = async (req, res) => {
 export const searchByCategory = async (req, res) => {
   try {
     const { searchCategory } = req.query;
-    const allowedCategories = ["Fiction", "Non-Fiction", "Educational"];
+    const allowedCategories = ["All", "Fiction", "Non-Fiction", "Educational"];
 
     if (!allowedCategories.includes(searchCategory)) {
       res.status(400).json({ message: "Bad request from client: " + err.message });
     }
     else {
-      const books = await Book.find({ "category": searchCategory });
-      res.status(200).json(books);
+      if (searchCategory === "All") {
+        const books = await Book.find();
+        res.status(200).json(books);
+      }
+      else {
+        const books = await Book.find({ "category": searchCategory });
+        res.status(200).json(books);
+      }
     }
 
   } catch (err) {

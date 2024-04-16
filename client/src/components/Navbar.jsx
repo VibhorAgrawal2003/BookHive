@@ -23,7 +23,7 @@ const Navbar = ({ updateCategory, updateQuery, searchQuery }) => {
         <nav className="w-full fixed z-40 bg-gray-900 text-white p-4 flex justify-between">
             <div className="w-full container mx-auto flex justify-between items-center">
                 <div className="w-auto">
-                    <a href="#" className="text-2xl font-bold navbar-link">BookHub</a>
+                    <a href="#" className="text-2xl font-bold navbar-link">BookHive</a>
                 </div>
                 <div className="w-2/3 flex items-center justify-between">
                     <div className='flex flex-row gap-x-4'>
@@ -32,6 +32,7 @@ const Navbar = ({ updateCategory, updateQuery, searchQuery }) => {
                         <div>
                             <button id="categoriesBtn" onMouseEnter={enterCategories} className="mr-6 hover:underline navbar-link">Categories</button>
                             {showCategories && <ul onMouseLeave={exitCategories}  className="absolute bg-gray-800 text-white rounded mt-2 w-40" id="categoriesList">
+                                <li><a onClick={() => updateCategory("All")}  href="#" className="block px-4 py-2 hover:bg-gray-700">All</a></li>
                                 <li><a onClick={() => updateCategory("Fiction")}  href="#" className="block px-4 py-2 hover:bg-gray-700">Fiction</a></li>
                                 <li><a onClick={() => updateCategory("Non-Fiction")} href="#" className="block px-4 py-2 hover:bg-gray-700">Non-Fiction</a></li>
                                 <li><a onClick={() => updateCategory("Educational")} href="#" className="block px-4 py-2 hover:bg-gray-700">Educational</a></li>
