@@ -13,6 +13,12 @@ const Navbar = ({ updateCategory, updateQuery, searchQuery }) => {
       setShowCategories(false);
     };
 
+    const handleSearchEnter = (event) => {
+        if (event.key === 'Enter') {
+            searchQuery();
+        }
+    };
+
     return (
         <nav className="w-full fixed z-40 bg-gray-900 text-white p-4 flex justify-between">
             <div className="w-full container mx-auto flex justify-between items-center">
@@ -33,7 +39,7 @@ const Navbar = ({ updateCategory, updateQuery, searchQuery }) => {
                         </div>
                     </div>
                     <div className="w-1/2 flex items-center search-container">
-                        <input onChange={(e) => updateQuery(e.target.value)} type="text" placeholder="Search books..." className="w-full rounded border border-gray-700 mr-2 p-2 text-black" />
+                        <input onKeyUp={handleSearchEnter} onInput={(e) => updateQuery(e.target.value)} type="text" placeholder="Search books..." className="w-full rounded border border-gray-700 mr-2 p-2 text-black" />
                         <button onClick={() => searchQuery()} className="bg-blue-500 text-white px-4 py-2 rounded">Search</button>
                     </div>
                 </div>

@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar';
 import Banner from '../components/Banner';
 import EbookCard from '../components/EbookCard';
 import Toaster from '../components/Toaster';
+import NoBooksFound from '../components/NoBooksFound';
 
 function Home() {
 
@@ -14,7 +15,7 @@ function Home() {
   const [showToaster, setShowToaster] = useState(false);
   
   // Show the download toaster
-  const handleDownload = () => {
+  const downloadToaster = () => {
     setShowToaster(true);
     setTimeout(() => {
     setShowToaster(false);
@@ -89,6 +90,12 @@ function Home() {
       </section>
       <div className="w-5/6 mx-auto mt-8 grid grid-cols-3 gap-8">
         
+        {books.length === 0 &&
+        
+          <NoBooksFound />
+        
+        }
+
         {books.map((book) => (
           <EbookCard
             key={book._id}
@@ -98,7 +105,7 @@ function Home() {
             category={book.category}
             imageUrl={book.imageUrl}
             downloadUrl={book.downloadUrl}
-            handleDownload={handleDownload}
+            downloadToaster={downloadToaster}
           />
         ))}
 

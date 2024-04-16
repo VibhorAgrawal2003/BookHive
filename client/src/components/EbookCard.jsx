@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import Toaster from './Toaster';
 
-const EbookCard = ({ title, author, description, category, imageUrl, downloadUrl, handleDownload }) => {
+const EbookCard = ({ title, author, description, category, imageUrl, downloadUrl, downloadToaster }) => {
 
     const truncatedDescription = description.length > 200 ? description.substring(0, 200) + '...' : description;
+
+    const handleDownload = () => {
+        window.open(downloadUrl, '_blank');
+        downloadToaster();
+    }
 
     return (
         <div className="border p-4 rounded-lg shadow-md flex flex-col transform translate-all duration-300 hover:scale-105">
