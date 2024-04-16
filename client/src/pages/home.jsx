@@ -9,6 +9,7 @@ import Toaster from '../components/Toaster';
 function Home() {
 
   const [books, setBooks] = useState([]);
+  const [query, setQuery] = useState("");
   const [category, setCategory] = useState("");
   const [showToaster, setShowToaster] = useState(false);
   
@@ -24,7 +25,6 @@ function Home() {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        console.log('Server URL:', process.env.REACT_APP_SERVER_URL);
         const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/client/books`);
         setBooks(response.data);
       } catch (error) {
@@ -46,8 +46,7 @@ function Home() {
     const searchCategory = async () => {    
       try {
         if (category !== "") {
-          console.log('Server URL:', process.env.REACT_APP_SERVER_URL);
-          const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/client/books/search?searchCategory=${category}`);
+          const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/client/books/category?searchCategory=${category}`);
           setBooks(response.data);
         }
       } catch (error) {
@@ -59,9 +58,32 @@ function Home() {
   }, [category]);
 
 
+  // Perform search by query
+  const updateQuery = (query) => {
+    setQuery(query.trim());
+  };
+
+  const searchQuery = async() => {
+    try {
+      if (query !== "") {
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/client/books/search?searchQuery=${query}`);
+        setBooks(response.data);
+      } else {
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/client/books`);
+        setBooks(response.data);
+      }
+    } catch (error) {
+      console.log('Axios Error:', error.message);
+    }
+  };
+
   return (
     <div>
-      <Navbar updateCategory = {updateCategory} />
+      <Navbar
+        updateCategory = {updateCategory}
+        updateQuery = {updateQuery}
+        searchQuery = {searchQuery}
+      />
       <section className="bg-gradient-to-r from-blue-400 to-blue-600 text-white py-20 px-4">
         <Banner/>
       </section>

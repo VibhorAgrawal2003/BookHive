@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const Navbar = ({ updateCategory }) => {
+const Navbar = ({ updateCategory, updateQuery, searchQuery }) => {
 
     const [showCategories, setShowCategories] = useState(false);
     
@@ -33,8 +33,8 @@ const Navbar = ({ updateCategory }) => {
                         </div>
                     </div>
                     <div className="w-1/2 flex items-center search-container">
-                        <input type="text" placeholder="Search books..." className="w-full rounded border border-gray-700 mr-2 p-2 text-black" />
-                        <button className="bg-blue-500 text-white px-4 py-2 rounded">Search</button>
+                        <input onChange={(e) => updateQuery(e.target.value)} type="text" placeholder="Search books..." className="w-full rounded border border-gray-700 mr-2 p-2 text-black" />
+                        <button onClick={() => searchQuery()} className="bg-blue-500 text-white px-4 py-2 rounded">Search</button>
                     </div>
                 </div>
             </div>

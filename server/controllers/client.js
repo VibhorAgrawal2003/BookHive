@@ -26,7 +26,7 @@ export const putBooks = async (req, res) => {
     res.status(201).json({ message: "Book added successfully", book: newBook });
 
   } catch (err) {
-    res.status(500).json({ message: "Unable to add book" });
+    res.status(500).json({ message: "Server error while adding book: " + err.message });
   }
 }
 
@@ -36,7 +36,7 @@ export const searchByCategory = async (req, res) => {
     const allowedCategories = ["Fiction", "Non-Fiction", "Educational"];
 
     if (!allowedCategories.includes(searchCategory)) {
-      res.status(400).json({ message: "Invalid category" });
+      res.status(400).json({ message: "Bad request from client: " + err.message });
     }
     else {
       const books = await Book.find({ "category": searchCategory });
@@ -44,6 +44,16 @@ export const searchByCategory = async (req, res) => {
     }
 
   } catch (err) {
-    res.status(500).json({ message: "Unable to search by category" });
+    res.status(500).json({ message: "Server error while searching by category: " + err.message });
+  }
+}
+
+export const searchByQuery = async (req, res) => {
+  try {
+    const { searchQuery } = req.query;
+    const books = await Book.find({ title: { $regex: searchQuery, $options: "i" }});
+    res.status(200).json(books);
+  } catch (err) {
+    res.status(500).json({ message: "Server error while searching by query: " + err.message })
   }
 }

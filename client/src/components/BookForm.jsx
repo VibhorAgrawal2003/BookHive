@@ -55,7 +55,11 @@ function BookForm({ onSubmit }) {
 
         <div className="mb-4">
           <label htmlFor="category" className="block text-gray-700 text-sm mb-2">Category</label>
-          <input type="text" id="category" name="category" value={bookDetails.category} onChange={handleChange} className="w-full border rounded px-2 py-1" required />
+          <select id="category" name="category" value={bookDetails.category} onChange={handleChange} className="w-full border rounded px-2 py-1" required>
+            <option value="Fiction">Fiction</option>
+            <option value="Non-Fiction">Non-Fiction</option>
+            <option value="Educational">Educational</option>
+          </select>
         </div>
         <div className="mb-4">
           <label htmlFor="description" className="block text-gray-700 text-sm mb-2">Description</label>

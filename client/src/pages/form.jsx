@@ -17,7 +17,11 @@ function Form() {
 
   return (
     <div>
-      <Navbar />
+      <Navbar
+        updateCategory={()=>{}}
+        updateQuery={()=>{}}
+        searchQuery={()=>{}}
+      />
       <div className='w-full pt-20 flex items-center justify-content-center'>
         <BookForm onSubmit={handleUpload} />
       </div>
