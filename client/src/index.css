@@ -44,6 +44,14 @@ body {
   background: linear-gradient(to right, #64b5f6, #2196f3);
 }
 
+.newstyle {
+  color: #fff;
+}
+
+.newstyle:hover {
+  color: #eb4034;
+}
+
 /* Navbar Hover Effect */
 .navbar-link:hover {
   text-decoration: none; /* Reset any default underline */

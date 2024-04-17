@@ -26,11 +26,11 @@ const Navbar = ({ updateCategory, updateQuery, searchQuery }) => {
                     <a href="#" className="text-2xl font-bold navbar-link">BookHive</a>
                 </div>
                 <div className="w-2/3 flex items-center justify-between">
-                    <div className='flex flex-row gap-x-4'>
-                        <div className="mr-6 hover:underline navbar-link"><Link to="/">Home</Link></div>
-                        <div className="mr-6 hover:underline navbar-link"><Link to="/form">Submit Book</Link></div>
+                    <div className='flex flex-row gap-x-4 items-center'>
+                        <div className="mr-6 hover:background-blue newstyle"><Link to="/">Home</Link></div>
+                        <div className="mr-6 hover:background-blue newstyle"><Link to="/form">Submit Book</Link></div>
                         <div>
-                            <button id="categoriesBtn" onMouseEnter={enterCategories} className="mr-6 hover:underline navbar-link">Categories</button>
+                            <button id="categoriesBtn" onMouseEnter={enterCategories} className="mr-6">Categories &#x25BC;</button>
                             {showCategories && <ul onMouseLeave={exitCategories}  className="absolute bg-gray-800 text-white rounded mt-2 w-40" id="categoriesList">
                                 <li><a onClick={() => updateCategory("All")}  href="#" className="block px-4 py-2 hover:bg-gray-700">All</a></li>
                                 <li><a onClick={() => updateCategory("Fiction")}  href="#" className="block px-4 py-2 hover:bg-gray-700">Fiction</a></li>
