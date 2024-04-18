@@ -25,9 +25,10 @@ const Navbar = ({ updateCategory, updateQuery, searchQuery }) => {
                 <div className="w-auto">
                     <a href="#" className="text-2xl font-bold navbar-link">BookHive</a>
                 </div>
-                <div className="w-2/3 flex items-center justify-between">
+                <div className="w-3/4 flex items-center justify-between">
                     <div className='flex flex-row gap-x-4 items-center'>
                         <div className="mr-6 hover:background-blue newstyle"><Link to="/">Home</Link></div>
+			            <div className="mr-6 hover:background-blue newstyle"><a href="https://github.com/VibhorAgrawal2003">Portfolio</a></div>
                         <div className="mr-6 hover:background-blue newstyle"><Link to="/form">Submit Book</Link></div>
                         <div>
                             <button id="categoriesBtn" onMouseEnter={enterCategories} className="mr-6">Categories &#x25BC;</button>
